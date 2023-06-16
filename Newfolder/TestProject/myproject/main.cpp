@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QQuickWindow>
-#include "mainwindow.h"
+//#include "mainwindow.h"
 #include "mainwindowfirst.h"
 
 int main(int argc, char *argv[])
@@ -12,9 +12,9 @@ int main(int argc, char *argv[])
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGL);
 #endif
-    CMainWindow w;
+//    CMainWindow w;
     MainWindowFirst firstWindow;
     firstWindow.show();
-    w.show();
+//    w.show();
     return a.exec();
 }

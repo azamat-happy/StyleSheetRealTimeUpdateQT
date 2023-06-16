@@ -33,7 +33,7 @@ struct MainWindowPrivate
     Ui::MainWindow ui;
     acss::QtAdvancedStylesheet* AdvancedStyleSheet;
     QVector<QPushButton*> ThemeColorButtons;
-//    QTreeView* treeView;
+
     /**
      * Private data constructor
      */

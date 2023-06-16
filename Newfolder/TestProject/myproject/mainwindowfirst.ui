@@ -37,8 +37,26 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Настройки</string>
+    </property>
+    <addaction name="actionChooseTheme"/>
+   </widget>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+   </widget>
+   <addaction name="menuMenu"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionChooseTheme">
+   <property name="text">
+    <string>Выбрать тему</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

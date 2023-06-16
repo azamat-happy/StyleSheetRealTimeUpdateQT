@@ -14,7 +14,10 @@ class MainWindowFirst : public QMainWindow
 public:
     explicit MainWindowFirst(QWidget *parent = nullptr);
     ~MainWindowFirst();
+//    MainWindowFirst *d;
     void createFillTree(); // Объявление функции createFillTree()
+    void openCMainWindow();
+
 
 private:
     Ui::MainWindowFirst *ui;

@@ -1,13 +1,30 @@
 #include "mainwindowfirst.h"
 #include "ui_mainwindowfirst.h"
+#include "mainwindow.h" // Добавленный include
+
 #include <QTreeWidget>
 #include <QVBoxLayout>
+#include <QSettings>
+
 MainWindowFirst::MainWindowFirst(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindowFirst)
 {
     ui->setupUi(this);
+
+    // Загрузка сохраненной темы
+//    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+//    QString savedTheme = settings.value("theme").toString();
+//    if (!savedTheme.isEmpty()) {
+//        d->AdvancedStyleSheet->setCurrentTheme(savedTheme);
+//        d->AdvancedStyleSheet->updateStylesheet();
+//    }
+
     createFillTree();
+
+    // Подключение сигнала triggered() к слоту openCMainWindow()
+    connect(ui->actionChooseTheme, &QAction::triggered, this, &MainWindowFirst::openCMainWindow);
+
 }
 
 MainWindowFirst::~MainWindowFirst()
@@ -59,4 +76,10 @@ void MainWindowFirst::createFillTree()
     QVBoxLayout* layout = new QVBoxLayout;
     layout->addWidget(treeWidget);
     this->centralWidget()->setLayout(layout);
+}
+
+void MainWindowFirst::openCMainWindow()
+{
+    CMainWindow* w = new CMainWindow(); // Создание объекта на куче
+    w->show();
 }
