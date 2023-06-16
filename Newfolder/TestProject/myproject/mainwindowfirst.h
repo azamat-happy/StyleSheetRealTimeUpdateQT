@@ -17,6 +17,7 @@ public:
 //    MainWindowFirst *d;
     void createFillTree(); // Объявление функции createFillTree()
     void openCMainWindow();
+    void loadSavedTheme();
 
 
 private:

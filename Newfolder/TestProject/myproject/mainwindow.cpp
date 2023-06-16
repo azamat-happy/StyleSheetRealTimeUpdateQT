@@ -220,7 +220,7 @@ CMainWindow::CMainWindow(QWidget *parent)
     QDir::setCurrent(QCoreApplication::applicationDirPath()); // Установка текущего рабочего каталога
     QString AppDir = qApp->applicationDirPath();
     QString StylesDir = STRINGIFY(STYLES_DIR);
-    QMessageBox::information(nullptr, "Paths", "AppDir: \"" + AppDir + "\"\nStylesDir: \"" + StylesDir + "\"");
+//    QMessageBox::information(nullptr, "Paths", "AppDir: \"" + AppDir + "\"\nStylesDir: \"" + StylesDir + "\"");
 
     d->AdvancedStyleSheet = new acss::QtAdvancedStylesheet(this);
     d->AdvancedStyleSheet->setStylesDirPath(StylesDir);
@@ -310,5 +310,12 @@ void CMainWindow::onThemeColorButtonClicked()
     }
     Color = ColorDialog.currentColor();
     d->AdvancedStyleSheet->setThemeVariableValue(Button->text(), Color.name());
+    d->AdvancedStyleSheet->updateStylesheet();
+}
+//установка темы
+void CMainWindow::setTheme(const QString& theme)
+{
+    // Установка выбранной темы
+    d->AdvancedStyleSheet->setCurrentTheme(theme);
     d->AdvancedStyleSheet->updateStylesheet();
 }

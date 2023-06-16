@@ -11,7 +11,7 @@ MainWindowFirst::MainWindowFirst(QWidget *parent) :
     ui(new Ui::MainWindowFirst)
 {
     ui->setupUi(this);
-
+    loadSavedTheme();
     // Загрузка сохраненной темы
 //    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
 //    QString savedTheme = settings.value("theme").toString();
@@ -32,6 +32,8 @@ MainWindowFirst::~MainWindowFirst()
     delete ui;
 }
 
+#include <QScrollArea>
+
 void MainWindowFirst::createFillTree()
 {
     // Создаем объект дерева
@@ -46,40 +48,58 @@ void MainWindowFirst::createFillTree()
     // Создаем корневой элемент дерева
     QTreeWidgetItem* rootItem = new QTreeWidgetItem(treeWidget);
     rootItem->setText(0, "Root");
-    //    rootItem->setText(1, "Root item description");
 
     // Создаем дочерние элементы для корневого элемента
     for (int i = 1; i <= 10; ++i)
     {
         QTreeWidgetItem* childItem = new QTreeWidgetItem(rootItem);
         childItem->setText(0, QString("Child %1").arg(i));
-        //        childItem->setText(1, QString("Child item %1 description").arg(i));
 
         // Создаем дочерние элементы для каждого дочернего элемента
         for (int j = 1; j <= 5; ++j)
         {
             QTreeWidgetItem* subChildItem = new QTreeWidgetItem(childItem);
             subChildItem->setText(0, QString("Subchild %1-%2").arg(i).arg(j));
-            //            subChildItem->setText(1, QString("Subchild item %1-%2 description").arg(i).arg(j));
 
             // Создаем дочерние элементы для каждого поддочернего элемента
             for (int k = 1; k <= 2; ++k)
             {
                 QTreeWidgetItem* subSubChildItem = new QTreeWidgetItem(subChildItem);
                 subSubChildItem->setText(0, QString("Subsubchild %1-%2-%3").arg(i).arg(j).arg(k));
-                //                subSubChildItem->setText(1, QString("Subsubchild item %1-%2-%3 description").arg(i).arg(j).arg(k));
             }
         }
     }
 
-    // Добавляем дерево в главное окно
-    QVBoxLayout* layout = new QVBoxLayout;
-    layout->addWidget(treeWidget);
-    this->centralWidget()->setLayout(layout);
+    // Создаем виджет с прокруткой и устанавливаем в него дерево
+
+    ui->scrollArea->setWidget(treeWidget);
+    ui->scrollArea->setWidgetResizable(true);  // Позволяет изменять размер виджета внутри области прокрутки
+
+    // Устанавливаем ограниченный размер для виджета с прокруткой
+    ui->scrollArea->setFixedSize(400, 400);
+
+    // Устанавливаем виджет с деревом в scrollArea
+    ui->scrollArea->setWidget(treeWidget);
+//    scrollArea->setWidgetResizable(true);
+
+    // Обновляем отображение scrollArea
+//    scrollArea->update();
 }
 
 void MainWindowFirst::openCMainWindow()
 {
-    CMainWindow* w = new CMainWindow(); // Создание объекта на куче
-    w->show();
+        CMainWindow* cMainWindow = new CMainWindow(this);
+        cMainWindow->show();
+}
+void MainWindowFirst::loadSavedTheme()
+{
+    // Загрузка сохраненной темы
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    QString savedTheme = settings.value("theme").toString();
+    if (!savedTheme.isEmpty()) {
+        // Создание экземпляра CMainWindow
+        CMainWindow* cMainWindow = new CMainWindow(this);
+        // Установка сохраненной темы
+        cMainWindow->setTheme(savedTheme);
+    }
 }

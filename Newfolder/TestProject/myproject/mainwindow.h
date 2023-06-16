@@ -16,6 +16,7 @@ class CMainWindow : public QMainWindow
 public:
     CMainWindow(QWidget *parent = nullptr);
     virtual ~CMainWindow();
+    void setTheme(const QString& theme);
 
 private:
     MainWindowPrivate* d;
@@ -27,5 +28,6 @@ private slots:
     void onThemeColorButtonClicked();
     void connectThemeActions();
     void onThemeButtonClicked();
+
 };
 #endif // CMAINWINDOW_H
