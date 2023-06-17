@@ -40,13 +40,21 @@
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>180</y>
+      <x>150</x>
+      <y>190</y>
       <width>160</width>
       <height>80</height>
      </rect>
     </property>
-    <layout class="QFormLayout" name="formLayout"/>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

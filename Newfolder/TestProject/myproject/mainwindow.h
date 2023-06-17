@@ -28,6 +28,6 @@ private slots:
     void onThemeColorButtonClicked();
     void connectThemeActions();
     void onThemeButtonClicked();
-
+    void onAddNewThemeClicked();
 };
 #endif // CMAINWINDOW_H

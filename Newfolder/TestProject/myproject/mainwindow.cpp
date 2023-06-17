@@ -33,7 +33,7 @@ struct MainWindowPrivate
     Ui::MainWindow ui;
     acss::QtAdvancedStylesheet* AdvancedStyleSheet;
     QVector<QPushButton*> ThemeColorButtons;
-
+    QPushButton* addNewThemeButton = nullptr;
     /**
      * Private data constructor
      */
@@ -46,6 +46,7 @@ struct MainWindowPrivate
     void updateThemeColorButtons();
     void updateQuickWidget();
     void addThemeButtons();
+    void createNewThemeSaveButton();
     /**
      * Loads theme aware icons for the actions in the toolbar
      */
@@ -78,9 +79,21 @@ void MainWindowPrivate::createThemeColorDockWidget()
         ThemeColorButtons.append(Button);
     }
 
+    // Создание разделительной линии
+    QFrame* separatorLine = new QFrame;
+    separatorLine->setFrameShape(QFrame::HLine);  // Установка горизонтальной формы линии
+    separatorLine->setFrameShadow(QFrame::Sunken);
+    separatorLine->setStyleSheet("background-color: #494949;");  // Установка красного цвета фона
+    Layout->addWidget(separatorLine);
+
+    // Создание кнопки "addNewTheme"
+    addNewThemeButton = new QPushButton("Create New Theme");
+    Layout->addWidget(addNewThemeButton);
+    QObject::connect(addNewThemeButton, &QPushButton::clicked, _this, &CMainWindow::onAddNewThemeClicked);
+
+    // Подключение сигнала clicked кнопки "addNewTheme"
     updateThemeColorButtons();
 }
-
 
 void MainWindowPrivate::updateThemeColorButtons()
 {
@@ -248,6 +261,8 @@ CMainWindow::CMainWindow(QWidget *parent)
         d->AdvancedStyleSheet->setCurrentTheme(savedTheme);
         d->AdvancedStyleSheet->updateStylesheet();
     }
+
+
 }
 
 CMainWindow::~CMainWindow()
@@ -318,4 +333,9 @@ void CMainWindow::setTheme(const QString& theme)
     // Установка выбранной темы
     d->AdvancedStyleSheet->setCurrentTheme(theme);
     d->AdvancedStyleSheet->updateStylesheet();
+}
+void CMainWindow::onAddNewThemeClicked()
+{
+    QMessageBox::information(this, "Button Clicked", "addNewThemeButton Clicked!");
+
 }
