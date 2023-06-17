@@ -70,21 +70,32 @@ void MainWindowFirst::createFillTree()
         }
     }
 
-    // Создаем виджет с прокруткой и устанавливаем в него дерево
+    // Создаем контекстное меню
+    QMenu* contextMenu = new QMenu(treeWidget);
+    QAction* action1 = new QAction("Изменить", contextMenu);
+    QAction* action2 = new QAction("Удалить", contextMenu);
 
+    // Добавляем действия в контекстное меню
+    contextMenu->addAction(action1);
+    contextMenu->addAction(action2);
+
+    // Устанавливаем контекстное меню для элементов дерева
+    treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(treeWidget, &QTreeWidget::customContextMenuRequested, [=](const QPoint& pos) {
+        QTreeWidgetItem* selectedItem = treeWidget->itemAt(pos);
+        if (selectedItem) {
+            contextMenu->exec(treeWidget->mapToGlobal(pos));
+        }
+    });
+
+    // Создаем виджет с прокруткой и устанавливаем в него дерево
     ui->scrollArea->setWidget(treeWidget);
     ui->scrollArea->setWidgetResizable(true);  // Позволяет изменять размер виджета внутри области прокрутки
 
     // Устанавливаем ограниченный размер для виджета с прокруткой
     ui->scrollArea->setFixedSize(400, 400);
-
-    // Устанавливаем виджет с деревом в scrollArea
-    ui->scrollArea->setWidget(treeWidget);
-//    scrollArea->setWidgetResizable(true);
-
-    // Обновляем отображение scrollArea
-//    scrollArea->update();
 }
+
 
 void MainWindowFirst::openCMainWindow()
 {
