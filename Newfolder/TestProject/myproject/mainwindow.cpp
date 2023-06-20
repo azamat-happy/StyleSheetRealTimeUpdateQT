@@ -45,6 +45,7 @@ struct MainWindowPrivate
     QString secondaryDarkColor;
     QString primaryTextColor;
     QString secondaryTextColor;
+     QGridLayout* gridLayout;
     /**
      * Private data constructor
      */
@@ -156,7 +157,7 @@ void MainWindowPrivate::addThemeButtons()
 {
     const auto& themes = AdvancedStyleSheet->themes();
 
-    QGridLayout* gridLayout = new QGridLayout;
+    gridLayout = new QGridLayout;
 
     int columnCount = 9; // Количество столбцов в таблице
     int row = 0;
@@ -432,6 +433,15 @@ void CMainWindow::onAddNewThemeClicked()
     // Обработка выбора темы
     d->AdvancedStyleSheet->setCurrentTheme(fileName);
     d->AdvancedStyleSheet->updateStylesheet();
+
+    // Очистить и обновить gridLayout
+    QLayoutItem* item;
+    while ((item = d->gridLayout->takeAt(0)) != nullptr)
+    {
+        delete item->widget();
+        delete item;
+    }
+    d->addThemeButtons();
 }
 //создает файл с цветами
 void CMainWindow::createColorThemeFile(const QString& fileName,
