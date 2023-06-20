@@ -107,15 +107,38 @@ void MainWindowPrivate::createThemeColorDockWidget()
 
 void MainWindowPrivate::updateThemeColorButtons()
 {
-    for (auto Button : ThemeColorButtons)
+    QString colors[] = {
+        primaryColor,
+        primaryLightColor,
+        secondaryColor,
+        secondaryLightColor,
+        secondaryDarkColor,
+        primaryTextColor,
+        secondaryTextColor
+    };
+
+    for (int i = 0; i < sizeof(colors) / sizeof(colors[0]); i++)
     {
+        auto Button = ThemeColorButtons[i];
         auto Color = AdvancedStyleSheet->themeColor(Button->text());
         QString TextColor = (Color.value() < 128) ? "#ffffff" : "#000000";
         QString ButtonStylesheet = QString("background-color: %1; color: %2;"
                                            "border: none;").arg(Color.name()).arg(TextColor);
         Button->setStyleSheet(ButtonStylesheet);
+
+        colors[i] = Color.name(); // Сохраняем значение цвета в массиве
     }
+
+    // Присваиваем значения массива полям
+    primaryColor = colors[0];
+    primaryLightColor = colors[1];
+    secondaryColor = colors[2];
+    secondaryLightColor = colors[3];
+    secondaryDarkColor = colors[4];
+    primaryTextColor = colors[5];
+    secondaryTextColor = colors[6];
 }
+
 
 
 void MainWindowPrivate::updateQuickWidget()
