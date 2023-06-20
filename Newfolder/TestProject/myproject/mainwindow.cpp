@@ -19,6 +19,9 @@
 #include <QWidget>
 #include <QSettings>
 #include <QTreeWidget>
+#include <QString>
+#include <QFile>
+#include <QTextStream>
 #define _STR(x) #x
 #define STRINGIFY(x)  _STR(x)
 #ifndef STYLES_DIR
@@ -337,5 +340,84 @@ void CMainWindow::setTheme(const QString& theme)
 void CMainWindow::onAddNewThemeClicked()
 {
     QMessageBox::information(this, "Button Clicked", "addNewThemeButton Clicked!");
+    QString fileName = setThemeFileName();
+    QString primaryColor = "#FF0000";
+    QString primaryLightColor = "#FF9999";
+    QString secondaryColor = "#0000FF";
+    QString secondaryLightColor = "#9999FF";
+    QString secondaryDarkColor = "#000099";
+    QString primaryTextColor = "#FFFFFF";
+    QString secondaryTextColor = "#000000";
+
+    createColorThemeFile(fileName, primaryColor, primaryLightColor, secondaryColor, secondaryLightColor, secondaryDarkColor, primaryTextColor, secondaryTextColor);
 
 }
+void CMainWindow::createColorThemeFile(const QString& fileName,
+                                       const QString& primaryColor,
+                                       const QString& primaryLightColor,
+                                       const QString& secondaryColor,
+                                       const QString& secondaryLightColor,
+                                       const QString& secondaryDarkColor,
+                                       const QString& primaryTextColor,
+                                       const QString& secondaryTextColor)
+{
+    QString StylesDir = STRINGIFY(STYLES_DIR);
+    QString themesDir = StylesDir + "/qt_material/themes";
+    QDir dir(themesDir);
+
+    // Проверяем, существует ли папка с темами
+    if (dir.exists())
+    {
+        // Создание XML-структуры для темы
+        QString xmlContent = "<!--?xml version=\"1.0\" encoding=\"UTF-8\"?-->\n";
+        xmlContent += "<resources dark=\"1\">\n";
+        xmlContent += "<color name=\"primaryColor\">" + primaryColor + "</color>\n";
+        xmlContent += "<color name=\"primaryLightColor\">" + primaryLightColor + "</color>\n";
+        xmlContent += "<color name=\"secondaryColor\">" + secondaryColor + "</color>\n";
+        xmlContent += "<color name=\"secondaryLightColor\">" + secondaryLightColor + "</color>\n";
+        xmlContent += "<color name=\"secondaryDarkColor\">" + secondaryDarkColor + "</color>\n";
+        xmlContent += "<color name=\"primaryTextColor\">" + primaryTextColor + "</color>\n";
+        xmlContent += "<color name=\"secondaryTextColor\">" + secondaryTextColor + "</color>\n";
+        xmlContent += "</resources>";
+
+        // Сохранение XML-файла
+        QString filePath = themesDir + "/" + fileName + ".xml";
+        QFile file(filePath);
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+            QTextStream out(&file);
+            out << xmlContent;
+            file.close();
+            qDebug() << "Файл" << filePath << "успешно создан.";
+        }
+        else
+        {
+            qDebug() << "Не удалось создать файл" << filePath;
+        }
+    }
+    else
+    {
+        qDebug() << "Папка с темами не существует";
+    }
+}
+QString CMainWindow::setThemeFileName()
+{
+    QString StylesDir = STRINGIFY(STYLES_DIR);
+    QString themesDir = StylesDir + "/qt_material/themes";
+    QDir dir(themesDir);
+
+    int themeNumber = 1;
+    QString baseFileName = "new_theme";
+    QString fileName = baseFileName + QString::number(themeNumber);
+
+    // Проверка наличия файла с таким именем
+    while (dir.exists(fileName + ".xml"))
+    {
+        themeNumber++;
+        fileName = baseFileName + QString::number(themeNumber);
+    }
+
+    return fileName;
+}
+
+

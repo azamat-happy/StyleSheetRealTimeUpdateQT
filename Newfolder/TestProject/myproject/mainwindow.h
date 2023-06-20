@@ -18,6 +18,7 @@ public:
     virtual ~CMainWindow();
     void setTheme(const QString& theme);
 
+
 private:
     MainWindowPrivate* d;
     friend struct MainWindowPrivate;// pimpl
@@ -29,5 +30,14 @@ private slots:
     void connectThemeActions();
     void onThemeButtonClicked();
     void onAddNewThemeClicked();
+    void createColorThemeFile(const QString& fileName,
+                              const QString& primaryColor,
+                              const QString& primaryLightColor,
+                              const QString& secondaryColor,
+                              const QString& secondaryLightColor,
+                              const QString& secondaryDarkColor,
+                              const QString& primaryTextColor,
+                              const QString& secondaryTextColor);
+    QString setThemeFileName();
 };
 #endif // CMAINWINDOW_H
