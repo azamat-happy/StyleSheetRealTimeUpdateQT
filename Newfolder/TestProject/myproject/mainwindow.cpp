@@ -37,6 +37,13 @@ struct MainWindowPrivate
     acss::QtAdvancedStylesheet* AdvancedStyleSheet;
     QVector<QPushButton*> ThemeColorButtons;
     QPushButton* addNewThemeButton = nullptr;
+    QString primaryColor;
+    QString primaryLightColor;
+    QString secondaryColor;
+    QString secondaryLightColor;
+    QString secondaryDarkColor;
+    QString primaryTextColor;
+    QString secondaryTextColor;
     /**
      * Private data constructor
      */
@@ -327,6 +334,38 @@ void CMainWindow::onThemeColorButtonClicked()
         return;
     }
     Color = ColorDialog.currentColor();
+
+    // Обновление значения переменной цвета
+    if (Button->text() == "primaryColor")
+    {
+        d->primaryColor = Color.name(QColor::HexRgb);
+         qDebug() << "primaryColor" << d->primaryColor;
+    }
+    else if (Button->text() == "primaryLightColor")
+    {
+        d->primaryLightColor = Color.name(QColor::HexRgb);
+    }
+    else if (Button->text() == "secondaryColor")
+    {
+        d->secondaryColor = Color.name(QColor::HexRgb);
+    }
+    else if (Button->text() == "secondaryLightColor")
+    {
+        d->secondaryLightColor = Color.name(QColor::HexRgb);
+    }
+    else if (Button->text() == "secondaryDarkColor")
+    {
+        d->secondaryDarkColor = Color.name(QColor::HexRgb);
+    }
+    else if (Button->text() == "secondaryDarkColor")
+    {
+        d->primaryTextColor = Color.name(QColor::HexRgb);
+    }
+    else if (Button->text() == "secondaryTextColor")
+    {
+        d->secondaryTextColor = Color.name(QColor::HexRgb);
+    }
+
     d->AdvancedStyleSheet->setThemeVariableValue(Button->text(), Color.name());
     d->AdvancedStyleSheet->updateStylesheet();
 }
@@ -337,21 +376,18 @@ void CMainWindow::setTheme(const QString& theme)
     d->AdvancedStyleSheet->setCurrentTheme(theme);
     d->AdvancedStyleSheet->updateStylesheet();
 }
+//Нажатие на кнопку новая тема
 void CMainWindow::onAddNewThemeClicked()
 {
-    QMessageBox::information(this, "Button Clicked", "addNewThemeButton Clicked!");
+
     QString fileName = setThemeFileName();
-    QString primaryColor = "#FF0000";
-    QString primaryLightColor = "#FF9999";
-    QString secondaryColor = "#0000FF";
-    QString secondaryLightColor = "#9999FF";
-    QString secondaryDarkColor = "#000099";
-    QString primaryTextColor = "#FFFFFF";
-    QString secondaryTextColor = "#000000";
 
-    createColorThemeFile(fileName, primaryColor, primaryLightColor, secondaryColor, secondaryLightColor, secondaryDarkColor, primaryTextColor, secondaryTextColor);
 
+
+
+    createColorThemeFile(fileName, d->primaryColor, d->primaryLightColor, d->secondaryColor, d->secondaryLightColor, d->secondaryDarkColor, d->primaryTextColor, d->secondaryTextColor);
 }
+//создает файл с цветами
 void CMainWindow::createColorThemeFile(const QString& fileName,
                                        const QString& primaryColor,
                                        const QString& primaryLightColor,
@@ -400,6 +436,7 @@ void CMainWindow::createColorThemeFile(const QString& fileName,
         qDebug() << "Папка с темами не существует";
     }
 }
+//устанавливает имя файла с пользовательской темой
 QString CMainWindow::setThemeFileName()
 {
     QString StylesDir = STRINGIFY(STYLES_DIR);

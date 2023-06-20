@@ -17,6 +17,14 @@ public:
     CMainWindow(QWidget *parent = nullptr);
     virtual ~CMainWindow();
     void setTheme(const QString& theme);
+    QString setThemeFileName();
+    QString primaryColor;
+    QString primaryLightColor;
+    QString secondaryColor;
+    QString secondaryLightColor;
+    QString secondaryDarkColor;
+    QString primaryTextColor;
+    QString secondaryTextColor;
 
 
 private:
@@ -38,6 +46,7 @@ private slots:
                               const QString& secondaryDarkColor,
                               const QString& primaryTextColor,
                               const QString& secondaryTextColor);
-    QString setThemeFileName();
+
+
 };
 #endif // CMAINWINDOW_H
