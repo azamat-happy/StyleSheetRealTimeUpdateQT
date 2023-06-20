@@ -22,6 +22,7 @@
 #include <QString>
 #include <QFile>
 #include <QTextStream>
+#include <QXmlStreamReader>
 #define _STR(x) #x
 #define STRINGIFY(x)  _STR(x)
 #ifndef STYLES_DIR
@@ -61,6 +62,7 @@ struct MainWindowPrivate
      * Loads theme aware icons for the actions in the toolbar
      */
     void loadThemeAwareToolbarActionIcons();
+    QString getNeededColorByName(const QString& themeName,const QString& themeNameColor);
 };
 
 //отвечает за всплывающую компоненту с кнопками!
@@ -159,6 +161,10 @@ void MainWindowPrivate::addThemeButtons()
     int columnCount = 9; // Количество столбцов в таблице
     int row = 0;
     int column = 0;
+    QString themeName = "dark_blue";
+    QString themeNameColor= "primaryColor";
+    QString color = getNeededColorByName(themeName,themeNameColor);
+    qDebug() << "Secondary Dark Color:" << color;
 
     // Массивы цветов для первого и второго цветов градиента
     QStringList firstColors = { "#333333", "#DCDCDC" }; // Темносерый цвет
@@ -255,6 +261,35 @@ void MainWindowPrivate::loadThemeAwareToolbarActionIcons()
     //	ui.actionaction->setIcon(AdvancedStyleSheet->loadThemeAwareSvgIcon(":/full_features/images/folder_open.svg"));
     //	ui.actionaction2->setIcon(AdvancedStyleSheet->loadThemeAwareSvgIcon(":/full_features/images/save.svg"));
     //	ui.actionaction3->setIcon(AdvancedStyleSheet->loadThemeAwareSvgIcon(":/full_features/images/help_outline.svg"));
+}
+QString MainWindowPrivate::getNeededColorByName(const QString& themeName, const QString& themeNameColor)
+{
+    QString StylesDir = STRINGIFY(STYLES_DIR);
+    QString fileName = StylesDir + "/qt_material/themes/" + themeName + ".xml";
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Failed to open file:" << fileName;
+        return QString();
+    }
+
+    QXmlStreamReader xml(&file);
+    while (!xml.atEnd())
+    {
+        if (xml.isStartElement() && xml.name() == QString("color") && xml.attributes().value(QString("name")) == QString(themeNameColor))
+        {
+            xml.readNext();
+            if (xml.isCharacters())
+            {
+                return xml.text().toString();
+            }
+        }
+        xml.readNext();
+    }
+
+    qDebug() << "Failed to find secondaryDarkColor in file:" << fileName;
+    return QString();
 }
 
 
