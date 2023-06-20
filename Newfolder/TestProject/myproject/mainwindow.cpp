@@ -423,6 +423,15 @@ void CMainWindow::onAddNewThemeClicked()
 
     QString fileName = setThemeFileName();
     createColorThemeFile(fileName, d->primaryColor, d->primaryLightColor, d->secondaryColor, d->secondaryLightColor, d->secondaryDarkColor, d->primaryTextColor, d->secondaryTextColor);
+
+    // Сохранение выбранной темы
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    settings.setValue("theme", fileName);
+    settings.sync();
+
+    // Обработка выбора темы
+    d->AdvancedStyleSheet->setCurrentTheme(fileName);
+    d->AdvancedStyleSheet->updateStylesheet();
 }
 //создает файл с цветами
 void CMainWindow::createColorThemeFile(const QString& fileName,
