@@ -161,31 +161,16 @@ void MainWindowPrivate::addThemeButtons()
     int columnCount = 9; // Количество столбцов в таблице
     int row = 0;
     int column = 0;
-    QString themeName = "dark_blue";
-    QString themeNameColor= "primaryColor";
-    QString color = getNeededColorByName(themeName,themeNameColor);
-    qDebug() << "Secondary Dark Color:" << color;
 
-    // Массивы цветов для первого и второго цветов градиента
-    QStringList firstColors = { "#333333", "#DCDCDC" }; // Темносерый цвет
-    QStringList secondColors = { "#ffd740", "#448aff", "#4dd0e1", "#8bc34a", "#ff4081", "#ab47bc", "#ff1744", "#1de9b6", "#ffff00" }; // Светлосерые цвета
-
-    for (int i = 0; i < themes.size(); i++)
+    for (const QString& theme : themes)
     {
-        QPushButton* button = new QPushButton(themes[i]);
+        QPushButton* button = new QPushButton(theme);
         QObject::connect(button, &QPushButton::clicked, _this, &CMainWindow::onThemeButtonClicked);
 
-        // Определение цветов градиента в зависимости от названия темы
-        QString firstColor;
-        QString secondColor;
-
-        if (themes[i].startsWith('d', Qt::CaseInsensitive)) {
-            firstColor = firstColors[0]; // "#333333" для тем, начинающихся с 'd'
-        } else if (themes[i].startsWith('l', Qt::CaseInsensitive)) {
-            firstColor = firstColors[1]; // "#DCDCDC" для тем, начинающихся с 'l'
-        }
-
-        secondColor = secondColors[i % secondColors.size()]; // Выбор цвета из массива secondColors
+        // Получение первого цвета для градиента
+        QString firstColor = getNeededColorByName(theme, "primaryColor");
+        // Получение второго цвета для градиента
+        QString secondColor = getNeededColorByName(theme, "secondaryDarkColor");
 
         // Настроить стиль кнопки с градиентным фоном
         QString buttonStyle = QString("QPushButton {"
@@ -193,7 +178,7 @@ void MainWindowPrivate::addThemeButtons()
                                       "    height: 20px;"
                                       "    border: none;" // Убираем границы кнопки
                                       "    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 %1, stop:1 %2);"
-                                       "    color: transparent;"
+                                      "    color: transparent;"
                                       "}").arg(firstColor).arg(secondColor);
         button->setStyleSheet(buttonStyle);
 
@@ -329,8 +314,6 @@ CMainWindow::CMainWindow(QWidget *parent)
         d->AdvancedStyleSheet->setCurrentTheme(savedTheme);
         d->AdvancedStyleSheet->updateStylesheet();
     }
-
-
 }
 
 CMainWindow::~CMainWindow()
@@ -415,7 +398,7 @@ void CMainWindow::onThemeColorButtonClicked()
     {
         d->secondaryDarkColor = Color.name(QColor::HexRgb);
     }
-    else if (Button->text() == "secondaryDarkColor")
+    else if (Button->text() == "primaryTextColor")
     {
         d->primaryTextColor = Color.name(QColor::HexRgb);
     }
@@ -439,20 +422,16 @@ void CMainWindow::onAddNewThemeClicked()
 {
 
     QString fileName = setThemeFileName();
-
-
-
-
     createColorThemeFile(fileName, d->primaryColor, d->primaryLightColor, d->secondaryColor, d->secondaryLightColor, d->secondaryDarkColor, d->primaryTextColor, d->secondaryTextColor);
 }
 //создает файл с цветами
 void CMainWindow::createColorThemeFile(const QString& fileName,
                                        const QString& primaryColor,
                                        const QString& primaryLightColor,
-                                       const QString& secondaryColor,
-                                       const QString& secondaryLightColor,
-                                       const QString& secondaryDarkColor,
                                        const QString& primaryTextColor,
+                                       const QString& secondaryColor,
+                                       const QString& secondaryDarkColor,
+                                       const QString& secondaryLightColor,
                                        const QString& secondaryTextColor)
 {
     QString StylesDir = STRINGIFY(STYLES_DIR);
