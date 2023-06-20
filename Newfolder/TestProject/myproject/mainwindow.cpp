@@ -467,7 +467,19 @@ QString CMainWindow::setThemeFileName()
     QDir dir(themesDir);
 
     int themeNumber = 1;
-    QString baseFileName = "new_theme";
+    QString baseFileName;
+    QString secondaryDarkColor = d->secondaryDarkColor;
+
+    // Определение базового имени файла в зависимости от светлоты secondaryDarkColor
+    if (this->isLightColor(secondaryDarkColor))
+    {
+        baseFileName = "light_theme_user";
+    }
+    else
+    {
+        baseFileName = "dark_theme_user";
+    }
+
     QString fileName = baseFileName + QString::number(themeNumber);
 
     // Проверка наличия файла с таким именем
@@ -479,5 +491,18 @@ QString CMainWindow::setThemeFileName()
 
     return fileName;
 }
+
+
+
+bool CMainWindow::isLightColor(const QString& color)
+{
+    // Получение значения яркости цвета
+    QColor colorObj(color);
+    int brightness = colorObj.value();
+    qDebug() << brightness;
+    // Определение, является ли цвет светлым
+    return brightness >= 128;
+}
+
 
 

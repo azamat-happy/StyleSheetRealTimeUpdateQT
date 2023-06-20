@@ -25,7 +25,7 @@ public:
     QString secondaryDarkColor;
     QString primaryTextColor;
     QString secondaryTextColor;
-
+    bool isLightColor(const QString& color);
 
 private:
     MainWindowPrivate* d;
