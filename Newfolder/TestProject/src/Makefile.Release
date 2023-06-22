@@ -18,7 +18,7 @@ CFLAGS        = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -Wall -Wextra -pedantic -O2 -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
 INCPATH       = -I. -IC:/Qt/6.5.1/mingw_64/include -IC:/Qt/6.5.1/mingw_64/include/QtWidgets -IC:/Qt/6.5.1/mingw_64/include/QtSvg -IC:/Qt/6.5.1/mingw_64/include/QtGui -IC:/Qt/6.5.1/mingw_64/include/QtQml -IC:/Qt/6.5.1/mingw_64/include/QtQmlIntegration -IC:/Qt/6.5.1/mingw_64/include/QtNetwork -IC:/Qt/6.5.1/mingw_64/include/QtCore -Irelease -I/include -IC:/Qt/6.5.1/mingw_64/mkspecs/win32-g++ 
 LINKER      =        g++
-LFLAGS        =        -Wl,-s -shared -Wl,-subsystem,windows -mthreads -Wl,--out-implib,C:\Users\azama\Documents\Newfolder\TestProject\src..\..\\lib\libqtadvancedcss.a
+LFLAGS        =        -Wl,-s -shared -Wl,-subsystem,windows -mthreads -Wl,--out-implib,C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src..\..\\lib\libqtadvancedcss.a
 LIBS        =        C:\Qt\6.5.1\mingw_64\lib\libQt6Widgets.a C:\Qt\6.5.1\mingw_64\lib\libQt6Svg.a C:\Qt\6.5.1\mingw_64\lib\libQt6Gui.a C:\Qt\6.5.1\mingw_64\lib\libQt6Qml.a C:\Qt\6.5.1\mingw_64\lib\libQt6Network.a C:\Qt\6.5.1\mingw_64\lib\libQt6Core.a   
 QMAKE         = C:\Qt\6.5.1\mingw_64\bin\qmake.exe
 DEL_FILE      = del
@@ -81,7 +81,7 @@ clean: compiler_clean
 	-$(DEL_FILE) release\QtAdvancedStylesheet.o release\moc_QtAdvancedStylesheet.o
 
 distclean: clean 
-	-$(DEL_FILE) C:\Users\azama\Documents\Newfolder\TestProject\lib\libqtadvancedcss.a
+	-$(DEL_FILE) C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\lib\libqtadvancedcss.a
 	-$(DEL_FILE) $(DESTDIR_TARGET)
 	-$(DEL_FILE) Makefile.Release
 
@@ -225,7 +225,7 @@ release/moc_QtAdvancedStylesheet.cpp: QtAdvancedStylesheet.h \
 		C:/Qt/6.5.1/mingw_64/include/QtCore/q20memory.h \
 		release/moc_predefs.h \
 		C:/Qt/6.5.1/mingw_64/bin/moc.exe
-	C:\Qt\6.5.1\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/azama/Documents/Newfolder/TestProject/src/release/moc_predefs.h -IC:/Qt/6.5.1/mingw_64/mkspecs/win32-g++ -IC:/Users/azama/Documents/Newfolder/TestProject/src -IC:/Qt/6.5.1/mingw_64/include -IC:/Qt/6.5.1/mingw_64/include/QtWidgets -IC:/Qt/6.5.1/mingw_64/include/QtSvg -IC:/Qt/6.5.1/mingw_64/include/QtGui -IC:/Qt/6.5.1/mingw_64/include/QtQml -IC:/Qt/6.5.1/mingw_64/include/QtQmlIntegration -IC:/Qt/6.5.1/mingw_64/include/QtNetwork -IC:/Qt/6.5.1/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include QtAdvancedStylesheet.h -o release\moc_QtAdvancedStylesheet.cpp
+	C:\Qt\6.5.1\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/azama/Documents/repo/StyleSheetRealTimeUpdateQT/Newfolder/TestProject/src/release/moc_predefs.h -IC:/Qt/6.5.1/mingw_64/mkspecs/win32-g++ -IC:/Users/azama/Documents/repo/StyleSheetRealTimeUpdateQT/Newfolder/TestProject/src -IC:/Qt/6.5.1/mingw_64/include -IC:/Qt/6.5.1/mingw_64/include/QtWidgets -IC:/Qt/6.5.1/mingw_64/include/QtSvg -IC:/Qt/6.5.1/mingw_64/include/QtGui -IC:/Qt/6.5.1/mingw_64/include/QtQml -IC:/Qt/6.5.1/mingw_64/include/QtQmlIntegration -IC:/Qt/6.5.1/mingw_64/include/QtNetwork -IC:/Qt/6.5.1/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include QtAdvancedStylesheet.h -o release\moc_QtAdvancedStylesheet.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -465,25 +465,25 @@ release/moc_QtAdvancedStylesheet.o: release/moc_QtAdvancedStylesheet.cpp
 ####### Install
 
 install_headers: first FORCE
-	@if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\include mkdir C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\include & if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\include exit 1
-	$(QINSTALL) C:\Users\azama\Documents\Newfolder\TestProject\src\acss_globals.h C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\include\acss_globals.h
-	$(QINSTALL) C:\Users\azama\Documents\Newfolder\TestProject\src\QtAdvancedStylesheet.h C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\include\QtAdvancedStylesheet.h
+	@if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\include mkdir C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\include & if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\include exit 1
+	$(QINSTALL) C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\acss_globals.h C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\include\acss_globals.h
+	$(QINSTALL) C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\QtAdvancedStylesheet.h C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\include\QtAdvancedStylesheet.h
 
 uninstall_headers: FORCE
-	-$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\include\QtAdvancedStylesheet.h
-	-$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\include\acss_globals.h
-	-$(DEL_DIR) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\include 
+	-$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\include\QtAdvancedStylesheet.h
+	-$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\include\acss_globals.h
+	-$(DEL_DIR) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\include 
 
 
 install_target: first FORCE
-	@if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\lib mkdir C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\lib & if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\lib exit 1
-	-$(INSTALL_FILE) ..\lib\libqtadvancedcss.a C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\installed\lib\libqtadvancedcss.a
-	-$(INSTALL_FILE) $(DESTDIR_TARGET) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\installed\lib\$(TARGET)
+	@if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\lib mkdir C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\lib & if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\lib exit 1
+	-$(INSTALL_FILE) ..\lib\libqtadvancedcss.a C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\installed\lib\libqtadvancedcss.a
+	-$(INSTALL_FILE) $(DESTDIR_TARGET) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\installed\lib\$(TARGET)
 
 uninstall_target: FORCE
-	-$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\installed\lib\libqtadvancedcss.a 
-	 -$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\installed\lib\$(TARGET)
-	-$(DEL_DIR) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\Newfolder\TestProject\src\..\installed\lib 
+	-$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\installed\lib\libqtadvancedcss.a 
+	 -$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\installed\lib\$(TARGET)
+	-$(DEL_DIR) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\..\installed\lib 
 
 
 install: install_headers install_target  FORCE

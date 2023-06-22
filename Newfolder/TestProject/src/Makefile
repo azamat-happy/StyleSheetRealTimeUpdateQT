@@ -667,7 +667,7 @@ all: release-all debug-all  FORCE
 clean: release-clean debug-clean  FORCE
 distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile
-	-$(DEL_FILE) C:\Users\azama\Documents\Newfolder\TestProject\lib\libqtadvancedcss.a
+	-$(DEL_FILE) C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\lib\libqtadvancedcss.a
 
 release-mocclean:
 	$(MAKE) -f $(MAKEFILE).Release mocclean

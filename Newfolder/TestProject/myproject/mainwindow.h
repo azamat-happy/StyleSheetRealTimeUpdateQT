@@ -25,6 +25,7 @@ public:
     QString secondaryDarkColor;
     QString primaryTextColor;
     QString secondaryTextColor;
+    QString STYLES_DIR;
     bool isLightColor(const QString& color);
     bool checkThemeExists(const QString& themeName);
 

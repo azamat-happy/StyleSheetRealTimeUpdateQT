@@ -41,54 +41,54 @@ SUBTARGETS    =  \
 
 sub-myproject-qmake_all: sub-src-qmake_all FORCE
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
+	cd myproject\ && $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
 	cd myproject\ && $(MAKE) -f Makefile qmake_all
 sub-myproject: sub-src FORCE
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile
 sub-myproject-make_first: sub-src-make_first FORCE
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
 sub-myproject-all: sub-src-all FORCE
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
 sub-myproject-clean: sub-src-clean FORCE
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
 sub-myproject-distclean: sub-src-distclean FORCE
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
 sub-myproject-install_subtargets: sub-src-install_subtargets FORCE
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
 sub-myproject-uninstall_subtargets: sub-src-uninstall_subtargets FORCE
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile uninstall
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile uninstall
 sub-src-qmake_all:  FORCE
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
+	cd src\ && $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
 	cd src\ && $(MAKE) -f Makefile qmake_all
 sub-src: FORCE
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile
 sub-src-make_first: FORCE
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile 
 sub-src-all: FORCE
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile all
 sub-src-clean: FORCE
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile clean
 sub-src-distclean: FORCE
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile distclean
 sub-src-install_subtargets: FORCE
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile install
 sub-src-uninstall_subtargets: FORCE
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile uninstall
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile uninstall
 
 Makefile: TestProject.pro C:/Qt/6.5.1/mingw_64/mkspecs/win32-g++/qmake.conf C:/Qt/6.5.1/mingw_64/mkspecs/features/spec_pre.prf \
 		C:/Qt/6.5.1/mingw_64/mkspecs/features/device_config.prf \
@@ -350,6 +350,7 @@ Makefile: TestProject.pro C:/Qt/6.5.1/mingw_64/mkspecs/win32-g++/qmake.conf C:/Q
 		C:/Qt/6.5.1/mingw_64/mkspecs/features/qt_config.prf \
 		C:/Qt/6.5.1/mingw_64/mkspecs/win32-g++/qmake.conf \
 		C:/Qt/6.5.1/mingw_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/Qt/6.5.1/mingw_64/mkspecs/features/exclusive_builds.prf \
 		C:/Qt/6.5.1/mingw_64/mkspecs/features/toolchain.prf \
 		C:/Qt/6.5.1/mingw_64/mkspecs/features/default_pre.prf \
@@ -630,6 +631,7 @@ C:/Qt/6.5.1/mingw_64/mkspecs/features/qt_functions.prf:
 C:/Qt/6.5.1/mingw_64/mkspecs/features/qt_config.prf:
 C:/Qt/6.5.1/mingw_64/mkspecs/win32-g++/qmake.conf:
 C:/Qt/6.5.1/mingw_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/Qt/6.5.1/mingw_64/mkspecs/features/exclusive_builds.prf:
 C:/Qt/6.5.1/mingw_64/mkspecs/features/toolchain.prf:
 C:/Qt/6.5.1/mingw_64/mkspecs/features/default_pre.prf:
@@ -665,34 +667,34 @@ uninstall_subtargets: sub-myproject-uninstall_subtargets sub-src-uninstall_subta
 
 sub-myproject-debug: sub-src-debug
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile debug
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile debug
 sub-src-debug:
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile debug
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile debug
 debug: sub-myproject-debug sub-src-debug
 
 sub-myproject-release: sub-src-release
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile release
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile release
 sub-src-release:
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile release
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile release
 release: sub-myproject-release sub-src-release
 
 sub-myproject-check: sub-src-check
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile check
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile check
 sub-src-check:
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile check
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile check
 check: sub-myproject-check sub-src-check
 
 sub-myproject-benchmark: sub-src-benchmark
 	@if not exist myproject\ mkdir myproject\ & if not exist myproject\ exit 1
-	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile benchmark
+	cd myproject\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\myproject\myproject.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile benchmark
 sub-src-benchmark:
 	@if not exist src\ mkdir src\ & if not exist src\ exit 1
-	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile benchmark
+	cd src\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\azama\Documents\repo\StyleSheetRealTimeUpdateQT\Newfolder\TestProject\src\src.pro -spec win32-g++ "CONFIG+=qtquickcompiler" ) && $(MAKE) -f Makefile benchmark
 benchmark: sub-myproject-benchmark sub-src-benchmark
 install:install_subtargets  FORCE
 

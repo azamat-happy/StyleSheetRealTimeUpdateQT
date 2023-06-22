@@ -2,7 +2,7 @@
 
 #include <QtAdvancedStylesheet.h>
 
-#include "ui_mainwindow2.h"
+#include "ui_mainwindow.h"
 #include <QDir>
 #include <QApplication>
 #include <QAction>
@@ -25,9 +25,9 @@
 #include <QXmlStreamReader>
 #define _STR(x) #x
 #define STRINGIFY(x)  _STR(x)
-#ifndef STYLES_DIR
-#define STYLES_DIR C:/Users/azama/Documents/repo/StyleSheetRealTimeUpdateQT/Newfolder/TestProject/styles
-#endif
+//#ifndef STYLES_DIR
+//#define STYLES_DIR C:/Users/azama/Documents/repo/StyleSheetRealTimeUpdateQT/Newfolder/TestProject/styles
+//#endif
 /**
  * Private data class - pimpl
  */
@@ -46,10 +46,14 @@ struct MainWindowPrivate
     QString primaryTextColor;
     QString secondaryTextColor;
      QGridLayout* gridLayout;
+    QString STYLES_DIR;
     /**
      * Private data constructor
      */
-    MainWindowPrivate(CMainWindow* _public) : _this(_public) {}
+    MainWindowPrivate(CMainWindow* _public) : _this(_public) {
+        QString StylesDir=(QStringLiteral("%1/styles").arg(QCoreApplication::applicationDirPath() + "/.."));
+        STYLES_DIR=StylesDir;
+    }
 
     void createThemeColorDockWidget();
     void fillThemeMenu();
@@ -263,7 +267,7 @@ void MainWindowPrivate::loadThemeAwareToolbarActionIcons()
 }
 QString MainWindowPrivate::getNeededColorByName(const QString& themeName, const QString& themeNameColor)
 {
-    QString StylesDir = STRINGIFY(STYLES_DIR);
+    QString StylesDir = STYLES_DIR;
     QString fileName = StylesDir + "/qt_material/themes/" + themeName + ".xml";
 
     QFile file(fileName);
@@ -300,8 +304,11 @@ CMainWindow::CMainWindow(QWidget *parent)
     setFixedSize(740, 420);
     QDir::setCurrent(QCoreApplication::applicationDirPath()); // Установка текущего рабочего каталога
     QString AppDir = qApp->applicationDirPath();
-    QString StylesDir = STRINGIFY(STYLES_DIR);
-    // QMessageBox::information(nullptr, "Paths", "AppDir: \"" + AppDir + "\"\nStylesDir: \"" + StylesDir + "\"");
+    QString StylesDir=(QStringLiteral("%1/styles").arg(QCoreApplication::applicationDirPath() + "/.."));
+    STYLES_DIR=StylesDir;
+    qDebug()<<"StyledDIR"<<STYLES_DIR;
+//    QString StylesDir = STRINGIFY(STYLES_DIR);
+//     QMessageBox::information(nullptr, "Paths", "AppDir: \"" + AppDir + "\"\nStylesDir: \"" + StylesDir + "\"");
 
     d->AdvancedStyleSheet = new acss::QtAdvancedStylesheet(this);
     d->AdvancedStyleSheet->setStylesDirPath(StylesDir);
@@ -480,7 +487,8 @@ void CMainWindow::createColorThemeFile(const QString& fileName,
                                        const QString& secondaryLightColor,
                                        const QString& secondaryTextColor)
 {
-    QString StylesDir = STRINGIFY(STYLES_DIR);
+    QString StylesDir = STYLES_DIR;
+    qDebug()<<"STYLES_DIR in create" <<StylesDir;
     QString themesDir = StylesDir + "/qt_material/themes";
     QDir dir(themesDir);
 
@@ -522,7 +530,7 @@ void CMainWindow::createColorThemeFile(const QString& fileName,
 //устанавливает имя файла с пользовательской темой
 QString CMainWindow::setThemeFileName()
 {
-    QString StylesDir = STRINGIFY(STYLES_DIR);
+    QString StylesDir = STYLES_DIR;
     QString themesDir = StylesDir + "/qt_material/themes";
     QDir dir(themesDir);
 
@@ -565,7 +573,7 @@ bool CMainWindow::isLightColor(const QString& color)
 }
 bool CMainWindow::checkThemeExists(const QString& themeName)
 {
-    QString StylesDir = STRINGIFY(STYLES_DIR);
+    QString StylesDir = STYLES_DIR;
     QString themesDir = StylesDir + "/qt_material/themes";
     QDir dir(themesDir);
 
