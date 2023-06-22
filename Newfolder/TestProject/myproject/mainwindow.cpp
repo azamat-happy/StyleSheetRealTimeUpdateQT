@@ -190,7 +190,7 @@ void MainWindowPrivate::addThemeButtons()
         if (theme == AdvancedStyleSheet->currentTheme())
         {
             qDebug() << "theme " << theme;
-             qDebug() << "currentTheme " << AdvancedStyleSheet->currentTheme();
+            qDebug() << "currentTheme " << AdvancedStyleSheet->currentTheme();
             // Если совпадает, добавляем к кнопке обводку красного цвета
             buttonStyle += "QPushButton {"
                            "    border: 2px solid red;"
@@ -198,6 +198,27 @@ void MainWindowPrivate::addThemeButtons()
         }
 
         button->setStyleSheet(buttonStyle);
+
+        // Создание контекстного меню для кнопки
+        QMenu* contextMenu = new QMenu(button);
+
+        // Проверка, начинается ли название файла с буквы "z"
+        if (theme.startsWith('z', Qt::CaseInsensitive))
+        {
+            // Создание пункта "Удалить" в контекстном меню
+            QAction* deleteAction = new QAction("Удалить", contextMenu);
+            QObject::connect(deleteAction, &QAction::triggered, [=]() {
+                _this->DeleteItem(theme);
+            });
+            // Добавление пункта "Удалить" в контекстное меню
+            contextMenu->addAction(deleteAction);
+        }
+
+        // Присоединение контекстного меню к кнопке
+        button->setContextMenuPolicy(Qt::CustomContextMenu);
+        QObject::connect(button, &QPushButton::customContextMenuRequested, [=](const QPoint& pos) {
+            contextMenu->exec(button->mapToGlobal(pos));
+        });
 
         gridLayout->addWidget(button, row, column);
 
@@ -586,6 +607,45 @@ bool CMainWindow::checkThemeExists(const QString& themeName)
     QStringList themeFiles = dir.entryList();
     return themeFiles.contains(themeName + ".xml");
 }
+void CMainWindow::DeleteItem(const QString& themeName)
+{
+    QString StylesDir = STYLES_DIR;
+    QString themesDir = StylesDir + "/qt_material/themes";
 
+    // Формируем путь к XML-файлу для удаления
+    QString filePath = themesDir + "/" + themeName + ".xml";
+
+    // Создаем объект класса QFile
+    QFile file(filePath);
+
+    // Проверяем, существует ли файл
+    if (file.exists())
+    {
+        // Удаляем файл
+        if (file.remove())
+        {
+            qDebug() << "XML file removed successfully: " << filePath;
+             d->AdvancedStyleSheet->setDefaultTheme();
+        }
+        else
+        {
+            qDebug() << "Failed to remove XML file: " << filePath;
+        }
+    }
+    else
+    {
+        qDebug() << "XML file does not exist: " << filePath;
+    }
+    d->AdvancedStyleSheet->setCurrentStyle("qt_material"); // Обновление списка тем
+    d->AdvancedStyleSheet->updateStylesheet(); // Обновление таблицы стилей
+    // Очистить и обновить gridLayout
+    QLayoutItem* item;
+    while ((item = d->gridLayout->takeAt(0)) != nullptr)
+    {
+        delete item->widget();
+        delete item;
+    }
+    d->addThemeButtons();
+}
 
 
