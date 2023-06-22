@@ -11,14 +11,9 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QScrollArea>
-#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
@@ -30,11 +25,6 @@ public:
     QWidget *centralwidget;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QRadioButton *radioButton;
-    QPushButton *pushButton;
-    QCheckBox *checkBox;
-    QDateEdit *dateEdit;
-    QSlider *horizontalSlider;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -43,32 +33,17 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(734, 368);
+        MainWindow->setMaximumSize(QSize(734, 368));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         scrollArea = new QScrollArea(centralwidget);
         scrollArea->setObjectName("scrollArea");
-        scrollArea->setGeometry(QRect(0, 0, 501, 181));
+        scrollArea->setGeometry(QRect(0, 0, 511, 221));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 499, 179));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 509, 219));
         scrollArea->setWidget(scrollAreaWidgetContents);
-        radioButton = new QRadioButton(centralwidget);
-        radioButton->setObjectName("radioButton");
-        radioButton->setGeometry(QRect(20, 200, 161, 41));
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(160, 200, 111, 41));
-        checkBox = new QCheckBox(centralwidget);
-        checkBox->setObjectName("checkBox");
-        checkBox->setGeometry(QRect(300, 200, 121, 31));
-        dateEdit = new QDateEdit(centralwidget);
-        dateEdit->setObjectName("dateEdit");
-        dateEdit->setGeometry(QRect(30, 240, 111, 51));
-        horizontalSlider = new QSlider(centralwidget);
-        horizontalSlider->setObjectName("horizontalSlider");
-        horizontalSlider->setGeometry(QRect(190, 250, 160, 16));
-        horizontalSlider->setOrientation(Qt::Horizontal);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -86,9 +61,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        radioButton->setText(QCoreApplication::translate("MainWindow", "RadioButton", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        checkBox->setText(QCoreApplication::translate("MainWindow", "CheckBox", nullptr));
     } // retranslateUi
 
 };

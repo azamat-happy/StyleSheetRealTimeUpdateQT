@@ -21,7 +21,7 @@ HEADERS += \
     mainwindowfirst.h
 
 FORMS += \
-    mainwindow2.ui \
+    mainwindow.ui \
     mainwindowfirst.ui
 
 RESOURCES +=
