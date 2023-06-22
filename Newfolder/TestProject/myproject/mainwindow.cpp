@@ -26,7 +26,7 @@
 #define _STR(x) #x
 #define STRINGIFY(x)  _STR(x)
 #ifndef STYLES_DIR
-#define STYLES_DIR C:/Users/azama/Documents/Newfolder/TestProject/styles
+#define STYLES_DIR C:/Users/azama/Documents/repo/StyleSheetRealTimeUpdateQT/Newfolder/TestProject/styles
 #endif
 /**
  * Private data class - pimpl
@@ -181,6 +181,18 @@ void MainWindowPrivate::addThemeButtons()
                                       "    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 %1, stop:1 %2);"
                                       "    color: transparent;"
                                       "}").arg(firstColor).arg(secondColor);
+
+        // Проверяем, совпадает ли текущая тема с темой из списка
+        if (theme == AdvancedStyleSheet->currentTheme())
+        {
+            qDebug() << "theme " << theme;
+             qDebug() << "currentTheme " << AdvancedStyleSheet->currentTheme();
+            // Если совпадает, добавляем к кнопке обводку красного цвета
+            buttonStyle += "QPushButton {"
+                           "    border: 2px solid red;"
+                           "}";
+        }
+
         button->setStyleSheet(buttonStyle);
 
         gridLayout->addWidget(button, row, column);
@@ -198,6 +210,7 @@ void MainWindowPrivate::addThemeButtons()
     widget->setLayout(gridLayout);
     ui.scrollArea->setWidget(widget);
 }
+
 
 
 //тот  самый метод, который устаналивает список из готовых тем
@@ -284,16 +297,28 @@ CMainWindow::CMainWindow(QWidget *parent)
     d(new MainWindowPrivate(this))
 {
     d->ui.setupUi(this);
+    setFixedSize(740, 420);
     QDir::setCurrent(QCoreApplication::applicationDirPath()); // Установка текущего рабочего каталога
     QString AppDir = qApp->applicationDirPath();
     QString StylesDir = STRINGIFY(STYLES_DIR);
-//    QMessageBox::information(nullptr, "Paths", "AppDir: \"" + AppDir + "\"\nStylesDir: \"" + StylesDir + "\"");
+    // QMessageBox::information(nullptr, "Paths", "AppDir: \"" + AppDir + "\"\nStylesDir: \"" + StylesDir + "\"");
 
     d->AdvancedStyleSheet = new acss::QtAdvancedStylesheet(this);
     d->AdvancedStyleSheet->setStylesDirPath(StylesDir);
     d->AdvancedStyleSheet->setOutputDirPath(AppDir + "/output");
     d->AdvancedStyleSheet->setCurrentStyle("qt_material");
-    d->AdvancedStyleSheet->setDefaultTheme();
+
+    // Загрузка сохраненной темы
+    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    QString savedTheme = settings.value("theme").toString();
+    if (savedTheme.isEmpty()) {
+        // Если сохраненной темы нет, устанавливаем тему по умолчанию
+        d->AdvancedStyleSheet->setDefaultTheme();
+    } else {
+        // Если есть сохраненная тема, устанавливаем её
+        d->AdvancedStyleSheet->setCurrentTheme(savedTheme);
+    }
+
     d->AdvancedStyleSheet->updateStylesheet();
     setWindowIcon(d->AdvancedStyleSheet->styleIcon());
     qApp->setStyleSheet(d->AdvancedStyleSheet->styleSheet());
@@ -307,14 +332,6 @@ CMainWindow::CMainWindow(QWidget *parent)
     d->loadThemeAwareToolbarActionIcons();
     d->addThemeButtons();
     connectThemeActions();
-
-    // Загрузка сохраненной темы
-    QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
-    QString savedTheme = settings.value("theme").toString();
-    if (!savedTheme.isEmpty()) {
-        d->AdvancedStyleSheet->setCurrentTheme(savedTheme);
-        d->AdvancedStyleSheet->updateStylesheet();
-    }
 }
 
 CMainWindow::~CMainWindow()
@@ -344,7 +361,16 @@ void CMainWindow::onThemeButtonClicked()
 
         // Обработка выбора темы
         d->AdvancedStyleSheet->setCurrentTheme(theme);
-        d->AdvancedStyleSheet->updateStylesheet();
+        d->AdvancedStyleSheet->setCurrentStyle("qt_material"); // Обновление списка тем
+        d->AdvancedStyleSheet->updateStylesheet(); // Обновление таблицы стилей
+        // Очистить и обновить gridLayout
+        QLayoutItem* item;
+        while ((item = d->gridLayout->takeAt(0)) != nullptr)
+        {
+            delete item->widget();
+            delete item;
+        }
+        d->addThemeButtons();
     }
 }
 
@@ -432,7 +458,8 @@ void CMainWindow::onAddNewThemeClicked()
 
     // Обработка выбора темы
     d->AdvancedStyleSheet->setCurrentTheme(fileName);
-    d->AdvancedStyleSheet->updateStylesheet();
+    d->AdvancedStyleSheet->setCurrentStyle("qt_material"); // Обновление списка тем
+    d->AdvancedStyleSheet->updateStylesheet(); // Обновление таблицы стилей
 
     // Очистить и обновить gridLayout
     QLayoutItem* item;
@@ -506,11 +533,11 @@ QString CMainWindow::setThemeFileName()
     // Определение базового имени файла в зависимости от светлоты secondaryDarkColor
     if (this->isLightColor(secondaryDarkColor))
     {
-        baseFileName = "light_theme_user";
+        baseFileName = "zlight_theme_user";
     }
     else
     {
-        baseFileName = "dark_theme_user";
+        baseFileName = "zdark_theme_user";
     }
 
     QString fileName = baseFileName + QString::number(themeNumber);

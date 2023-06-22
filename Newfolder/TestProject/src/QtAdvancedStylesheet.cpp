@@ -645,6 +645,7 @@ bool QtAdvancedStylesheetPrivate::parseStyleJsonFile()
 }
 
 
+
 //============================================================================
 void QtAdvancedStylesheetPrivate::parsePaletteFromJson()
 {
