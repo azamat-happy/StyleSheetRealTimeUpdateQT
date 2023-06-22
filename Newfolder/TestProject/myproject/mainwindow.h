@@ -26,6 +26,7 @@ public:
     QString primaryTextColor;
     QString secondaryTextColor;
     bool isLightColor(const QString& color);
+    bool checkThemeExists(const QString& themeName);
 
 private:
     MainWindowPrivate* d;
@@ -46,6 +47,7 @@ private slots:
                               const QString& secondaryDarkColor,
                               const QString& primaryTextColor,
                               const QString& secondaryTextColor);
+
 
 
 };

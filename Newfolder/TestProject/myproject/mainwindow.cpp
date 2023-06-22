@@ -2,7 +2,7 @@
 
 #include <QtAdvancedStylesheet.h>
 
-#include "ui_mainwindow.h"
+#include "ui_mainwindow2.h"
 #include <QDir>
 #include <QApplication>
 #include <QAction>
@@ -311,7 +311,7 @@ CMainWindow::CMainWindow(QWidget *parent)
     // Загрузка сохраненной темы
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
     QString savedTheme = settings.value("theme").toString();
-    if (savedTheme.isEmpty()) {
+    if (savedTheme.isEmpty() || !checkThemeExists(savedTheme)) {
         // Если сохраненной темы нет, устанавливаем тему по умолчанию
         d->AdvancedStyleSheet->setDefaultTheme();
     } else {
@@ -562,6 +562,21 @@ bool CMainWindow::isLightColor(const QString& color)
     qDebug() << brightness;
     // Определение, является ли цвет светлым
     return brightness >= 128;
+}
+bool CMainWindow::checkThemeExists(const QString& themeName)
+{
+    QString StylesDir = STRINGIFY(STYLES_DIR);
+    QString themesDir = StylesDir + "/qt_material/themes";
+    QDir dir(themesDir);
+
+    // Поиск файлов с расширением .xml в папке themes
+    QStringList filters;
+    filters << "*.xml";
+    dir.setNameFilters(filters);
+
+    // Проверка наличия файла с заданным названием темы
+    QStringList themeFiles = dir.entryList();
+    return themeFiles.contains(themeName + ".xml");
 }
 
 
